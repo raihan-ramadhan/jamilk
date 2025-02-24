@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Rubik } from "next/font/google";
 import "./globals.css";
+import PromotionalText from "@/components/PromotionalText";
+import Navbar from "@/components/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const rubik = Rubik({
+  variable: "--font-rubik-sans",
   subsets: ["latin"],
 });
 
@@ -25,8 +22,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${rubik.variable} antialiased bg-background text-foreground`}
       >
+        <div className="space-y-2 bg-primary">
+          <PromotionalText />
+          <p className="text-center text-white">
+            free shiping on all orders over $35
+          </p>
+          <Navbar />
+        </div>
         {children}
       </body>
     </html>

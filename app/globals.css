@@ -1,21 +1,33 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* COLORS */
+  --color-background: #ffffff;
+  --color-foreground: #0a0a0a;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #0a0a0a;
+  --color-border: #d1d9e6;
+  --color-secondary: #f6f6f6;
+  --color-secondary-foreground: #2b2b2b;
+  --color-primary: #22a2c3;
+  --color-primary-foreground: #f0f7ff;
+  --color-greenDesign: #7dca3c;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* ANIMATIONS */
+  --animate-marquee: marquee 1s linear infinite;
+  @keyframes marquee {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
   }
+
+  /* SCREEENS */
+  --breakpoint-xs: 360px;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
