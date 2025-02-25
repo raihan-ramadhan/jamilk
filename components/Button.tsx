@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/utils/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-2xl text-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 focus:outline-offset-2 focus:outline-2 focus:outline-dashed ",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-2xl text-md font-medium disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 focus-visible:outline-primary focus-visible:outline-dashed focus-visible:outline-2 focus-visible:outline-offset-2 hover:scale-105 hover:shadow duration-200 transition-[colors,scale]",
   {
     variants: {
       variant: {
@@ -27,8 +27,8 @@ const buttonVariants = cva(
         icon: "h-9 w-9",
       },
       onFocusStyle: {
-        default: "focus:outline-primary",
-        white: "focus:outline-white",
+        default: "focus-visible:outline-primary",
+        white: "focus-visible:outline-white",
       },
     },
     defaultVariants: {

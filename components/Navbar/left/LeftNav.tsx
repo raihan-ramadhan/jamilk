@@ -4,71 +4,69 @@ import {
   NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
+  NavigationMenuLinkButton,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/NavigationMenu";
 import Link from "next/link";
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
 import { ChevronRight, Plus } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { cn } from "@/utils/utils";
 import { Button } from "@/components/Button";
+import NavCard from "./NavCard";
+import { NavContentLinks } from "../Navbar";
 
-const Leftnav = () => {
-  const navContentLinksObjects = [
-    {
-      text: "all flavours",
-      href: "/collections/shop-all",
-    },
-    {
-      text: "variety packs",
-      href: "/products/variety-pack-smoothie",
-    },
-    { text: "best sellers", href: "/collections/best-sellers" },
-    { text: "prebiotic fiber", href: "/collections/prebiotic-fiber" },
-    { text: "immune support", href: "/collections/immunity-support" },
-    { text: "nut butter", href: "/collections/nut-butters" },
-  ] as const;
-  const [hoveredSubMenu, setHoveredSubMenu] = useState<string | null>(null);
+const Leftnav = ({
+  setHoveredSubMenu,
+  hoveredSubMenu,
+  navContentLinksObjects,
+}: {
+  setHoveredSubMenu: React.Dispatch<React.SetStateAction<string | null>>;
+  hoveredSubMenu: string | null;
+  navContentLinksObjects: NavContentLinks;
+}) => {
   const div1Ref = useRef<HTMLDivElement | null>(null);
   const div2Ref = useRef<HTMLDivElement | null>(null);
 
   const handleMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
-    // Get the related target (where the cursor is going next)
-    const relatedTarget = event.relatedTarget as Node;
+    const relatedTarget = event.relatedTarget as Node | null;
 
-    // If the related target is inside either div1 or div2, do nothing
     if (
-      div1Ref?.current?.contains(relatedTarget) ||
-      div2Ref?.current?.contains(relatedTarget)
+      relatedTarget instanceof Node &&
+      (div1Ref?.current?.contains(relatedTarget) ||
+        div2Ref?.current?.contains(relatedTarget))
     ) {
       return;
     }
-
-    // If the cursor has left both divs, log the message
     setHoveredSubMenu(null);
   };
 
   return (
     <div className="h-full [&>*:first-child]:h-full w-full flex justify-start">
-      <NavigationMenuList className="h-full">
+      <NavigationMenuList className="h-full gap-2">
         <NavigationMenuItem className="h-full">
-          <NavigationMenuTrigger className="h-full">
+          <NavigationMenuTrigger
+            className="h-full"
+            onFocus={(e) => {
+              if (e.relatedTarget) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.target.click();
+              }
+            }}
+          >
             shop{" "}
-            <Plus
-              className="group-data-[state=open]:rotate-45 group-data-[state=closed]:rotate-0 transition-transform duration-200"
-              aria-hidden="true"
-            />
+            <Plus className="group-data-[state=open]:rotate-45 group-data-[state=closed]:rotate-0 transition-transform duration-200" />
           </NavigationMenuTrigger>
           <NavigationMenuContent
             className={cn(
-              "relative flex bg-popover rounded-b-3xl shadow-[0_3px_2px_0_rgba(0,0,0,0.3)] border-border border-t-0 border-solid p-0 overflow-hidden",
-              hoveredSubMenu ? "w-full" : "w-fit"
+              "relative flex bg-popover rounded-b-3xl shadow-[0_3px_2px_0_rgba(0,0,0,0.3)] border-border border-solid border-t p-0 overflow-hidden !w-fit !md:w-fit peer",
+              hoveredSubMenu ? "!w-full md:!w-full" : ""
             )}
           >
             <NavigationMenuPrimitive.Sub>
-              <NavigationMenuList className="flex-col py-3">
+              <NavigationMenuList className="flex-col py-3 space-x-0">
                 <div
                   className="flex-col px-3"
                   ref={div1Ref}
@@ -76,33 +74,41 @@ const Leftnav = () => {
                   onBlur={() => setHoveredSubMenu(null)}
                   tabIndex={-1}
                 >
-                  {navContentLinksObjects.map(({ href, text }, i) => (
-                    <NavigationMenuItem
-                      key={i}
-                      value={href}
-                      onFocus={() => setHoveredSubMenu(text)}
-                      onMouseEnter={() => setHoveredSubMenu(text)}
-                      className="bg-background hover:bg-secondary outline outline-transparent hover:outline-border outline-1 rounded-2xl overflow-hidden text-nowrap w-full"
-                    >
-                      <Link href={href} legacyBehavior passHref>
-                        <NavigationMenuLink className="w-full h-full text-2xl py-2 px-3 flex justify-between items-center gap-5">
-                          {text}
-                          <div className="rounded-full bg-primary text-primary-foreground size-6 flex justify-center items-center">
-                            <ChevronRight className="size-5" />
-                          </div>
+                  {Object.entries(navContentLinksObjects).map(
+                    ([key, { href, text }]) => (
+                      <NavigationMenuItem
+                        key={key}
+                        value={href}
+                        onFocus={() => setHoveredSubMenu(key)}
+                        onMouseEnter={() => setHoveredSubMenu(key)}
+                      >
+                        <NavigationMenuLink
+                          asChild
+                          className="w-full h-full text-2xl py-2 px-3 flex justify-between items-center gap-14 outline outline-transparent hover:outline-border focus:outline-border rounded-2xl bg-background hover:bg-secondary text-nowrap"
+                        >
+                          <Link href={href}>
+                            {text}
+                            <div className="rounded-full bg-primary text-primary-foreground size-6 inline-flex justify-center items-center">
+                              <ChevronRight className="size-5" />
+                            </div>
+                          </Link>
                         </NavigationMenuLink>
-                      </Link>
-                    </NavigationMenuItem>
-                  ))}
+                        {/* HEREEEEE */}
+                        {/* <div className="absolute -right-0">
+                          <Button>TEST</Button>
+                        </div> */}
+                      </NavigationMenuItem>
+                    )
+                  )}
                 </div>
-                <div className="flex">
+                <div className="flex pt-3 justify-between w-full px-3">
                   <NavigationMenuItem>
-                    <Button type="button" asChild>
+                    <Button type="button" asChild className="text-xl px-6">
                       <Link href={"/store-locator"}>find in store</Link>
                     </Button>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <Button asChild>
+                    <Button type="button" asChild className="text-xl px-6">
                       <Link href={"/rewards"}>reward</Link>
                     </Button>
                   </NavigationMenuItem>
@@ -111,22 +117,27 @@ const Leftnav = () => {
             </NavigationMenuPrimitive.Sub>
             {hoveredSubMenu ? (
               <div
-                className="w-full bg-green-200 pl-5"
+                className="w-full bg-popover px-5 py-3 @container"
                 ref={div2Ref}
                 onMouseLeave={handleMouseLeave}
               >
-                {hoveredSubMenu}
+                <ul className="h-full grid grid-cols-5 gap-4 @max-[600px]:grid-cols-4 @max-[450px]:grid-cols-3 @max-[375px]:grid-cols-2">
+                  {navContentLinksObjects[
+                    hoveredSubMenu as keyof NavContentLinks
+                  ].cards.map((props, i) => (
+                    <NavCard key={i} {...props} />
+                  ))}
+                </ul>
               </div>
             ) : null}
+            {/* OVERLAY */}
+            <div className="fixed -z-20 inset-0 bg-black/30 w-full h-full pointer-events-none" />
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Documentation
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
+
+        <NavigationMenuLinkButton href="/docs">
+          our story
+        </NavigationMenuLinkButton>
       </NavigationMenuList>
     </div>
   );
