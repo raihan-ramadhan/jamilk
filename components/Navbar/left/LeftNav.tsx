@@ -61,15 +61,15 @@ const Leftnav = ({
           </NavigationMenuTrigger>
           <NavigationMenuContent
             className={cn(
-              "relative flex bg-popover rounded-b-3xl shadow-[0_3px_2px_0_rgba(0,0,0,0.3)] border-border border-solid border-t p-0 overflow-hidden !w-fit !md:w-fit peer",
+              "relative [&>*>*]:!static flex bg-popover rounded-b-3xl shadow-[0_3px_2px_0_rgba(0,0,0,0.3)] border-border border-solid border-t p-0 overflow-hidden !w-fit !md:w-fit",
               hoveredSubMenu ? "!w-full md:!w-full" : ""
             )}
           >
             <NavigationMenuPrimitive.Sub>
               <NavigationMenuList className="flex-col py-3 space-x-0">
                 <div
-                  className="flex-col px-3"
                   ref={div1Ref}
+                  className="flex-col px-3 w-[300px]"
                   onMouseLeave={handleMouseLeave}
                   onBlur={() => setHoveredSubMenu(null)}
                   tabIndex={-1}
@@ -84,7 +84,7 @@ const Leftnav = ({
                       >
                         <NavigationMenuLink
                           asChild
-                          className="w-full h-full text-2xl py-2 px-3 flex justify-between items-center gap-14 outline outline-transparent hover:outline-border focus:outline-border rounded-2xl bg-background hover:bg-secondary text-nowrap"
+                          className="w-full h-full text-2xl py-2 px-3 flex justify-between items-center outline outline-transparent hover:outline-border focus:outline-border rounded-2xl bg-background hover:bg-secondary text-nowrap"
                         >
                           <Link href={href}>
                             {text}
@@ -93,43 +93,39 @@ const Leftnav = ({
                             </div>
                           </Link>
                         </NavigationMenuLink>
-                        {/* HEREEEEE */}
-                        {/* <div className="absolute -right-0">
-                          <Button>TEST</Button>
-                        </div> */}
+                        {hoveredSubMenu && hoveredSubMenu === key ? (
+                          <div
+                            className="bg-popover pl-2 pr-5 py-3 @container absolute right-0 top-0 w-[calc(100%-300px)] h-full overflow-y-scroll"
+                            ref={div2Ref}
+                            onMouseLeave={handleMouseLeave}
+                          >
+                            <ul className="h-full grid grid-cols-5 gap-3 @max-[600px]:grid-cols-4 @max-[450px]:grid-cols-3 @max-[375px]:grid-cols-2">
+                              {navContentLinksObjects[
+                                hoveredSubMenu as keyof NavContentLinks
+                              ].cards.map((props, i) => (
+                                <NavCard key={i} {...props} />
+                              ))}
+                            </ul>
+                          </div>
+                        ) : null}
                       </NavigationMenuItem>
                     )
                   )}
                 </div>
-                <div className="flex pt-3 justify-between w-full px-3">
-                  <NavigationMenuItem>
-                    <Button type="button" asChild className="text-xl px-6">
+                <div className="flex pt-3 justify-between w-full px-3 gap-3">
+                  <NavigationMenuItem className="w-full">
+                    <Button type="button" asChild className="text-xl w-full">
                       <Link href={"/store-locator"}>find in store</Link>
-                    </Button>
+                    </Button>{" "}
                   </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <Button type="button" asChild className="text-xl px-6">
+                  <NavigationMenuItem className="w-full">
+                    <Button type="button" asChild className="text-xl w-full">
                       <Link href={"/rewards"}>reward</Link>
                     </Button>
                   </NavigationMenuItem>
                 </div>
               </NavigationMenuList>
             </NavigationMenuPrimitive.Sub>
-            {hoveredSubMenu ? (
-              <div
-                className="w-full bg-popover px-5 py-3 @container"
-                ref={div2Ref}
-                onMouseLeave={handleMouseLeave}
-              >
-                <ul className="h-full grid grid-cols-5 gap-4 @max-[600px]:grid-cols-4 @max-[450px]:grid-cols-3 @max-[375px]:grid-cols-2">
-                  {navContentLinksObjects[
-                    hoveredSubMenu as keyof NavContentLinks
-                  ].cards.map((props, i) => (
-                    <NavCard key={i} {...props} />
-                  ))}
-                </ul>
-              </div>
-            ) : null}
             {/* OVERLAY */}
             <div className="fixed -z-20 inset-0 bg-black/30 w-full h-full pointer-events-none" />
           </NavigationMenuContent>
