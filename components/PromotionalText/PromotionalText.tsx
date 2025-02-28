@@ -6,8 +6,10 @@ const PromotionalText = () => {
       <p className="w-full flex items-center gap-8 text-xs justify-end text-right animate-[marquee_8000ms_linear_infinite] xs:animate-[marquee_15000ms_linear_infinite] sm:animate-[marquee_30000ms_linear_infinite]">
         {[...Array(4)].map((_, i) => (
           <span key={i} className="space-x-8">
-            <Link href={"/collections/all"}>SHOP NOW</Link>
-            <Link href={"/subscribe-save"}>
+            <Link href={"/collections/all"} tabIndex={-1}>
+              SHOP NOW
+            </Link>
+            <Link href={"/subscribe-save"} tabIndex={-1}>
               SUBSCRIBE & SAVE 10% ON YOU FAVORITE SMOOTHIES
             </Link>
           </span>
