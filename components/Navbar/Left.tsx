@@ -1,16 +1,14 @@
-"use client";
-
 import { NavContentLinks } from "@/types/product";
-import NavMenuDekstop from "./LeftMenuDekstop";
-import NavMenuMobile from "./LeftMenuMobile";
 import { getProducts } from "@/utils/products";
+import NavMenuleftDesktop from "./fragments/left/desktop/NavMenuDesktop";
+import NavMenuMobile from "./fragments/left/mobile/LeftMenuMobile";
 
-const Leftnav = ({
-  setHoveredSubMenu,
-  hoveredSubMenu,
+const Left = ({
+  open,
+  setOpen,
 }: {
-  setHoveredSubMenu: React.Dispatch<React.SetStateAction<string | null>>;
-  hoveredSubMenu: string | null;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const navContentLinks: NavContentLinks = {
     1: {
@@ -80,12 +78,12 @@ const Leftnav = ({
   } as const;
 
   return (
-    <div className="h-full [&>*:first-child]:h-full w-full flex justify-start">
+    <div className="flex items-center gap-1">
       <div className="hidden lg:block">
-        <NavMenuDekstop
+        <NavMenuleftDesktop
+          open={open}
           navContentLinks={navContentLinks}
-          hoveredSubMenu={hoveredSubMenu}
-          setHoveredSubMenu={setHoveredSubMenu}
+          setOpen={setOpen}
         />
       </div>
       <div className="lg:hidden">
@@ -95,4 +93,4 @@ const Leftnav = ({
   );
 };
 
-export default Leftnav;
+export default Left;

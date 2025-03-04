@@ -5,6 +5,7 @@ import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { Plus } from "lucide-react";
 
 import { cn } from "@/utils/utils";
+import { cva } from "class-variance-authority";
 
 function Accordion({
   ...props
@@ -33,13 +34,17 @@ function AccordionThemeItem({
     <AccordionPrimitive.Item
       data-slot="accordion-item"
       className={cn(
-        "bg-secondary rounded-2xl overflow-hidden border border-border",
+        "bg-secondary rounded-3xl overflow-hidden border border-border",
         className
       )}
       {...props}
     />
   );
 }
+
+export const accordionTriggerstyle = cva(
+  "flex flex-1 items-start justify-between gap-4 py-4 text-left transition-all outline-none disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-45 cursor-pointer text-lg font-semibold group/accordiontrigger focus:outline-none bg-secondary z-50"
+);
 
 function AccordionTrigger({
   className,
@@ -50,10 +55,7 @@ function AccordionTrigger({
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
-        className={cn(
-          "flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left transition-all outline-none disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-45 cursor-pointer text-lg font-semibold group/accordiontrigger focus:outline-none bg-secondary z-50",
-          className
-        )}
+        className={cn(accordionTriggerstyle(), className)}
         {...props}
       >
         <span className="after:absolute after:left-0 after:bottom-0 after:h-[1.5px] after:w-0 after:bg-black after:transition-[width] after:duration-500 group-hover/accordiontrigger:after:w-full group-focus/accordiontrigger:after:w-full inline-block relative">
@@ -74,7 +76,7 @@ function AccordionThemeTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "flex flex-1 items-start justify-between gap-4 py-4 text-left transition-all outline-none disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-45 bg-secondary rounded-3xl cursor-pointer text-2xl font-semibold px-3 group/accordionthemetrigger",
+          "flex flex-1 items-start justify-between gap-4 py-4 text-left transition-all outline-none disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-45 bg-secondary cursor-pointer text-2xl font-semibold px-3 group/accordionthemetrigger",
           className
         )}
         {...props}

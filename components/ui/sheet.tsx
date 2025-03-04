@@ -10,9 +10,7 @@ const Sheet = SheetPrimitive.Root;
 
 const SheetTrigger = SheetPrimitive.Trigger;
 
-const SheetPortal = ({ children }: { children: React.ReactNode }) => {
-  return <SheetPrimitive.Portal>{children}</SheetPrimitive.Portal>;
-};
+const SheetPortal = SheetPrimitive.Portal;
 
 const SheetOverlay = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Overlay>,
@@ -37,9 +35,9 @@ const sheetVariants = cva(
         top: "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
         bottom:
           "inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
-        left: "inset-y-0 sm:inset-y-3 h-auto left-0 sm:left-3 w-full sm:w-3/4 max-w-full sm:max-w-md data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left",
+        left: "inset-y-0 sm:inset-y-3 h-auto left-0 sm:left-3 w-full sm:w-3/4 max-w-md data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left",
         right:
-          "inset-y-0 sm:inset-y-3 right-0 sm:right-3 h-auto w-full sm:w-3/4 max-w-full sm:max-w-md data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right",
+          "inset-y-0 sm:inset-y-3 right-0 sm:right-3 h-auto w-full sm:w-3/4 max-w-md data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right",
       },
     },
     defaultVariants: {
@@ -67,6 +65,7 @@ const SheetClose = React.forwardRef<
     {children}
   </SheetPrimitive.Close>
 ));
+SheetClose.displayName = SheetPrimitive.Close.displayName;
 
 interface SheetContentProps
   extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,

@@ -8,14 +8,13 @@ export type Product = {
   color: string;
   price: number;
   desc: string;
+  url: string;
 };
-
-export type Card = Product & { href: string };
 
 type NavContentItem = {
   text: string;
   href: string;
-  cards: Card[];
+  cards: Product[];
 };
 
 export type NavContentLinks = {

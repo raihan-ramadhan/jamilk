@@ -7,6 +7,7 @@ export const products = {
     color: "#3e3668",
     price: 5.0,
     desc: "6 Pack carton",
+    url: "/products/blackberry-vanilla",
   },
   "blueberry-beet": {
     name: "blueberry beet",
@@ -16,6 +17,7 @@ export const products = {
     color: "#3a60b7",
     price: 9.08,
     desc: "6 Pack carton",
+    url: "/products/blueberry-beet",
   },
   "cherry-acai": {
     name: "cherry acai",
@@ -25,6 +27,7 @@ export const products = {
     color: "#962f6c",
     price: 7.23,
     desc: "6 Pack carton",
+    url: "/products/cherry-acai",
   },
   "mango-coconut": {
     name: "mango coconut",
@@ -34,6 +37,7 @@ export const products = {
     color: "#f1b500",
     price: 7.58,
     desc: "6 Pack carton",
+    url: "/products/mango-coconut",
   },
   "strawberry-banana": {
     name: "strawberry banana",
@@ -43,6 +47,7 @@ export const products = {
     color: "#e14a79",
     price: 7.48,
     desc: "6 Pack carton",
+    url: "/products/strawberry-banana",
   },
   "strawberry-pineapple": {
     name: "strawberry pineapple",
@@ -52,6 +57,7 @@ export const products = {
     color: "#e9404f",
     price: 9.13,
     desc: "6 Pack carton",
+    url: "/products/strawberry-pineapple",
   },
   "super-berry": {
     name: "super berry",
@@ -61,6 +67,7 @@ export const products = {
     color: "#3a92d5",
     price: 8.38,
     desc: "6 Pack carton",
+    url: "/products/super-berry",
   },
   "sweet-potato-goji": {
     name: "sweet potato goji",
@@ -70,6 +77,7 @@ export const products = {
     color: "#ff8025",
     price: 6.56,
     desc: "6 Pack carton",
+    url: "/products/sweet-potato-goji",
   },
   "prebiotic-fiber-bundle": {
     name: "prebiotic fiber bundle",
@@ -79,6 +87,7 @@ export const products = {
     color: "#73b938",
     price: 6.03,
     desc: "6 Pack carton",
+    url: "/products/prebiotic-fiber-bundle",
   },
   "super-tropical": {
     name: "super tropical",
@@ -88,6 +97,7 @@ export const products = {
     color: "#f19d00",
     price: 6.72,
     desc: "6 Pack carton",
+    url: "/products/super-tropical",
   },
   "apple-cinnamon-almond-butter": {
     name: "apple cinnamon, almond butter",
@@ -97,6 +107,7 @@ export const products = {
     color: "#ae3911",
     price: 5.43,
     desc: "6 Pack carton",
+    url: "/products/apple-cinnamon-almond-butter",
   },
   "strawberry-peanut-butter": {
     name: "strawberry peanut butter",
@@ -106,5 +117,6 @@ export const products = {
     color: "#f25d46",
     price: 8.02,
     desc: "6 Pack carton",
+    url: "/products/strawberry-peanut-butter",
   },
 } as const;

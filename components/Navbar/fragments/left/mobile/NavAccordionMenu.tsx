@@ -1,3 +1,4 @@
+import NavCardMobile from "@/components/Navbar/fragments/left/mobile/NavCardMobile";
 import {
   Accordion,
   AccordionContent,
@@ -6,7 +7,6 @@ import {
   AccordionThemeTrigger,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import NavCardMobile from "./NavCardMobile";
 import { NavContentLinks } from "@/types/product";
 
 const AccordionNavMenu = ({

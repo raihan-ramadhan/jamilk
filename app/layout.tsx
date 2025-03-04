@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
 import "./globals.css";
 import PromotionalText from "@/components/PromotionalText";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/Navbar/Navbar";
+import { constantNumbers } from "@/utils/constants";
 
 const rubik = Rubik({
   variable: "--font-rubik-sans",
@@ -27,7 +28,7 @@ export default function RootLayout({
         <div className="space-y-2 bg-primary">
           <PromotionalText />
           <p className="text-center text-white">
-            free shiping on all orders over $35
+            free shiping on all orders over $ {constantNumbers("FREE_SHIPPING")}
           </p>
           <Navbar />
         </div>

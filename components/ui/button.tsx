@@ -17,6 +17,7 @@ const buttonVariants = cva(
           "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
         secondary:
           "bg-background text-secondary-foreground shadow-sm hover:bg-secondary/80",
+        icon: "bg-background text-secondary-foreground hover:bg-secondary/80 [&_svg]:size-5 rounded-full",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
@@ -24,7 +25,7 @@ const buttonVariants = cva(
         default: "h-12 px-4 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-10 rounded-md px-8",
-        icon: "h-9 w-9",
+        icon: "h-6 w-6",
       },
       onFocusStyle: {
         default: "focus-visible:outline-primary",

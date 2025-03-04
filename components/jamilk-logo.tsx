@@ -6,7 +6,7 @@ const JamilkLogo = ({ className }: { className?: string }) => {
     <Link
       href="/"
       className={cn(
-        "text-5xl tracking-tighter font-bold rounded-full px-3",
+        "text-5xl tracking-[-4px] font-bold rounded-full px-3",
         className
       )}
     >
