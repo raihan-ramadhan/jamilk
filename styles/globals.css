@@ -14,12 +14,15 @@
   --color-primary: #22a2c3;
   --color-primary-foreground: #f0f7ff;
   --color-greenDesign: #7dca3c;
-  --muted: #eef2f8;
-  --muted-foreground: #8592a3;
-  --accent: #f4f4f5;
-  --accent-foreground: #18181b;
+  --color-muted: #eef2f8;
+  --color-muted-foreground: #8592a3;
+  --color-accent: #f4f4f5;
+  --color-accent-foreground: #18181b;
 
   /* </COLORS> */
+
+  /* PX unit */
+  --promo-text-height: 40px;
 
   /* <ANIMATIONS> */
   --animate-marquee: marquee 1s linear infinite;
@@ -62,7 +65,7 @@
 
 @layer base {
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground p-0 m-0;
     font-family: var(--font-rubik-sans), Arial, Helvetica, sans-serif;
   }
   *:focus-visible {

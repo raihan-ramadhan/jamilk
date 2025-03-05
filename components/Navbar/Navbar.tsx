@@ -6,7 +6,7 @@ import JamilkLogo from "../jamilk-logo";
 import Left from "./Left";
 import Right from "./Right";
 
-const Nav = () => {
+const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -25,4 +25,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default Navbar;
